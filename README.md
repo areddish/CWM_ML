@@ -33,5 +33,6 @@ To install other Python modules we will use pip. In the command line or terminal
 The first two modules we will install are wheel and ipython.
 
 ```> pip install wheel``` 
+
 ```> pip install ipython```
 

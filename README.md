@@ -2,7 +2,7 @@
 Welcome to Code With Me Machine Learning Night. We will install Python, TensorFlow, and learn how to build simple Neural Networks, and how they work.
 
 # Installing Python 
-We want to install Python 3.6. We can find the latest version at Python's main website:
+We want to install Python 3.6 (64 bit version). We can find the latest version at Python's main website:
 
 https://www.python.org/downloads/release/python-363/
 
@@ -35,4 +35,39 @@ The first two modules we will install are wheel and ipython.
 ```> pip install wheel``` 
 
 ```> pip install ipython```
+
+We can take a look at all the modules pip has installed by calling:
+
+```> pip list```
+
+# TensorFlow and the NumPy Stack
+BEFORE we install TensorFlow we need to install the NumPy stack. Specifically on Windows ```> pip install numpy``` MIGHT NOT work with certain modules that depend on Numpy, therefore we should install ```numpy+mkl```. We can find the wheel file for the numpy+mkl instillation here at the un-offical python package index:
+
+https://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+We can see in the heading paragraph that numpy+mkl-1.13 is used by many modules. For Windows the specific module we want to download is:
+
+```numpy‑1.13.3+mkl‑cp36‑cp36m‑win_amd64.whl```
+
+Numpy+MKL Version 1.13, CPython 3.6, Windows 64 bit. After the download we can open the command prompt and chage directory into the Downloads folder.
+
+```> cd Downloads```
+
+```> pip install numpy‑1.13.3+mkl‑cp36‑cp36m‑win_amd64.whl```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

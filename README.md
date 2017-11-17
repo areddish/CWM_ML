@@ -55,7 +55,21 @@ Numpy+MKL Version 1.13, CPython 3.6, Windows 64 bit. After the download we can o
 
 ```> pip install numpy‑1.13.3+mkl‑cp36‑cp36m‑win_amd64.whl```
 
+## Installing TensorFlow and the NumPy Stack
+Now that we have NumPy+MKL installed, we can now install all the other modules we need.
 
+```> pip install tensorflow pandas matplotlib scipy```
+
+## Hello World in TensorFlow
+After configuring the correct path to the Python 3.6.exe in PyCharm we can write our first script using TensorFlow!
+
+```
+import tensorflow as tf
+
+hello = tf.constant('Hello, TensorFlow!')
+sess = tf.Session()
+print(sess.run(hello))
+```
 
 
 

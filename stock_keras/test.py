@@ -102,8 +102,9 @@ test_output = output_data[test_split_index:]
 model.fit(
     input_data[:test_split_index],
     output_data[:test_split_index],
+    shuffle=True,
     epochs=5,
-    batch_size=25)
+    batch_size=45)
 
 model2.fit(
     input_data[:test_split_index],
@@ -112,6 +113,6 @@ model2.fit(
     batch_size=25)
 
 score = model.evaluate(test_input, test_output, batch_size=25)
-print("SCORE:", score)
+print("SCORE:", model.metrics_names, score)
 
 #print("PREDICT: ", model.predict(test_input))

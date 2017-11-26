@@ -9,13 +9,13 @@ num_features = 5
 # Create 100000 lines of random data 
 input = np.random.rand(100000, num_features)
 # Our output is just the input with each feature increased by 5
-output = np.divide(input, 3)
+output = np.add(input, 5)
+
+# SAMPLE: Div by 3: output = np.divide(input, 5)
 
 # We build a sequential NN with a fully connected layer
 model = Sequential()
 model.add(Dense(num_features, input_shape=(num_features,)))
-#model.add(Dropout(0.1))
-#model.add(Dense(num_features))
 
 # Stochastic gradient descent optimizer with some sensible defaults.
 sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)

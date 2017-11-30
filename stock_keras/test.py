@@ -116,3 +116,21 @@ score = model.evaluate(test_input, test_output, batch_size=25)
 print("SCORE:", model.metrics_names, score)
 
 #print("PREDICT: ", model.predict(test_input))
+
+
+
+
+
+spxData['close5perchange'] = spxData['Adj Close'].pct_change(5)
+spxData['close10perchange'] = spxData['Adj Close'].pct_change(10)
+spxData['close-1perchange'] = (spxData['Adj Close'].shift(-1) - spxData['Adj Close'])/spxData['Adj Close']
+spxData.loc[spxData['close-1perchange']>0.01,'close-1perchange']=1
+spxData.loc[spxData['close-1perchange']<=0.01,'close-1perchange']=0
+# def normalize(df, col):
+#     df[col] = df[col] / df[col].max()
+
+# normalize(spxData, "Adj Close")
+# normalize(spxData, "Volume")
+# normalize(spxData, "50sma")
+# normalize(spxData, "200sma")
+

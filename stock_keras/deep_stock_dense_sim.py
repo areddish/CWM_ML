@@ -73,3 +73,50 @@ model.fit(train_input_data_, train_output_data, epochs=5)
 results = model.evaluate(test_input_data, test_output_data)
 print ()
 print ("Model evaluation results (loss, acc): " + str(results))
+print ()
+
+#-------------------------------------------------------------------------------------
+# For fun, compute what happens if we followed predictions
+predictions = model.predict(test_input_data)
+
+# Flag to check if we have stock or not
+owns_stock = False
+# How many shares to buy when we get the buy signal
+shares_to_buy = 100
+# Record the buy price for profit calculations
+buy_price = 0
+# Rolling profit
+profit = 0
+# This is used to index into the spxTestData data frame. It starts at 
+# 1972 since we split this data off the spxData data frame at the end.
+index = 1972
+
+for entry in predictions:
+    # Categorize the prediction into buy / sell
+    buy_sell_recommendation = "Buy" if entry[0] > 0.5 else "Sell"
+    fake_price = spxTestData["Adj Close"][index]
+
+    print("Prediction is: {:.3f}, which categorizes as a {}.".format(entry[0], buy_sell_recommendation))
+
+    # If we get a buy signal and don't own, we should buy    
+    if (buy_sell_recommendation == "Buy" and not owns_stock):
+        print("\tBuying {} shares at a price of {:.2f}".format(shares_to_buy, fake_price))
+        buy_price = fake_price
+        owns_stock = True
+
+    # If we get a sell signal and own stock we should sell
+    if (buy_sell_recommendation == "Sell" and owns_stock):
+        profit += (fake_price - buy_price) * shares_to_buy
+        print("\tSelling {} shares at a price of {:.2f} for a profit of {:.2f}".format(shares_to_buy, fake_price, profit))
+        owns_stock = False
+    index += 1
+
+print()
+# It's possible we may hold something into the future since we predict tomorrow but cannot
+# act on it. For that case include the profit.
+if (owns_stock):
+    print("Still holding {} shares for tomorrow".format(shares_to_buy))
+
+print("Total Profit = ${:.2f}".format(profit))
+
+#print("Total Profit including unrelalized profit = {:.2f}".format((2650.0-fake_price) * shares_to_buy + profit))
